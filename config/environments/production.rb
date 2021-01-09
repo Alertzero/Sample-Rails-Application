@@ -120,7 +120,7 @@ Rails.application.configure do
     :address        => 'smtp.mailgun.org',
     :user_name      => 'postmaster@sandboxfa20a7ada8074e03ae87babeb4c62059.mailgun.org',
     :password       => '0bdb10a87fff6bdceca87d1e151e5a96-3d0809fb-c814a1f8',
-    :domain         => 'https://dry-waters-70898.herokuapp.com',
+    :domain         => 'dry-waters-70898.herokuapp.com',
     :authentication => :plain,
     :enable_starttls_auto => true
   }

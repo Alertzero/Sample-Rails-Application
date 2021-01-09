@@ -109,4 +109,17 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  host = 'https://dry-waters-70898.herokuapp.com/'
+  config.action_mailer.default_url_options = { host: host }
+  ActionMailer::Base.smtp_settings = {
+    :port           => ENV['587'],
+    :address        => ENV['smtp.mailgun.org'],
+    :user_name      => ENV['postmaster@sandboxfa20a7ada8074e03ae87babeb4c62059.mailgun.org'],
+    :password       => ENV['0bdb10a87fff6bdceca87d1e151e5a96-3d0809fb-c814a1f8'],
+    :domain         => 'https://dry-waters-70898.herokuapp.com',
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
 end

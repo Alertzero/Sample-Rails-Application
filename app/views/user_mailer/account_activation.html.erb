@@ -1,0 +1,8 @@
+<h1>Sample App by Aratori.net</h1>
+
+<p>Moshi moshh <strong><%= @user.name %>-sama</strong> Daijobu desu ka?</p>
+
+<p class="">Welcome to the Sample App created by <a href="https://www.aratori.net" class="href">Aratori.net</a>!! Click on the link below to activate your account:</p>
+
+<%= link_to "Activate", edit_account_activation_url(@user.activation_token,
+                                                    email: @user.email) %>

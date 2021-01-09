@@ -122,6 +122,5 @@ Rails.application.configure do
     :password       => '0bdb10a87fff6bdceca87d1e151e5a96-3d0809fb-c814a1f8',
     :domain         => 'dry-waters-70898.herokuapp.com',
     :authentication => :plain,
-    :enable_starttls_auto => true
   }
 end

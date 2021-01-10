@@ -116,12 +116,11 @@ Rails.application.configure do
   host = 'https://dry-waters-70898.herokuapp.com'
   config.action_mailer.default_url_options = { host: host }
   ActionMailer::Base.smtp_settings = {
-    :api_key        => 'ab2e416278e9916c78693c40466d6e77-3d0809fb-007c2e42',
     :port           => 587,
     :address        => 'smtp.mailgun.org',
     :user_name      => 'postmaster@sandboxfa20a7ada8074e03ae87babeb4c62059.mailgun.org',
     :password       => '0bdb10a87fff6bdceca87d1e151e5a96-3d0809fb-c814a1f8',
-    :domain         => 'sandboxfa20a7ada8074e03ae87babeb4c62059.mailgun.org',
+    :domain         => 'sandboxfa20a7ada8074e03ae87babeb4c62059',
     :authentication => :plain
   }
 end

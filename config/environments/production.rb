@@ -123,6 +123,10 @@ Rails.application.configure do
   #  :domain         => 'heroku.com',
   #  :enable_starttls_auto => true
   #} 
+
+ # Store uploaded files on Amazon AWS.
+ config.active_storage.service = :amazon
+
 config.action_mailer.delivery_method = :smtp
 host = 'https://dry-waters-70898.herokuapp.com' #replace with your own url
 config.action_mailer.default_url_options = { host: host }

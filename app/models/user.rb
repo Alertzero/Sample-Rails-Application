@@ -1,4 +1,12 @@
 class User < ApplicationRecord
+  has_many :active_relationships, class_name: 'Relationship',
+                                  foreign_key: 'follower_id',
+                                  dependent: :destroy
+  has_many :passive_relationships, class_name: 'Relationship',
+                                   foreign_key: 'followed_id',
+                                   dependent: :destroy
+  has_many :following, through: :active_relationships,  source: :followed
+  has_many :followers, through: :passive_relationships, source: :follower
 
   has_many :microposts, dependent: :destroy
   attr_accessor :remember_token, :activation_token, :reset_token
@@ -12,6 +20,21 @@ class User < ApplicationRecord
                     uniqueness: true
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+
+  # follows
+  def follow(other_user)
+    following << other_user unless self == other_user
+  end
+
+  # unfollows a user
+  def unfollow(other_user)
+    following.delete(other_user)
+  end
+
+  # check following user
+  def following?(other_user)
+    following.include?(other_user)
+  end
 
   # Returns the hash digest of the given string.
   def self.digest(string)
@@ -68,14 +91,16 @@ class User < ApplicationRecord
     UserMailer.password_reset(self).deliver_now
   end
 
-
   # Returns true if a password reset has expired.
   def password_reset_expired?
     resent_set_at < 2.hours.ago
   end
 
   def feed
-    Micropost.where("user_id = ?", id)
+    following_ids = "SELECT followed_id FROM relationships
+    WHERE  follower_id = :user_id"
+    Micropost.where("user_id IN (#{following_ids})
+    OR user_id = :user_id", user_id: id)
   end
 
   private
@@ -91,6 +116,4 @@ class User < ApplicationRecord
 
   # Defines a proto-feed.
   # See "Following users" for the full implementation.
-
-
 end

@@ -7,6 +7,16 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Create a main sample user.
+
+User.create!(name: 'admin',
+  email: 'admin@alert.com',
+  password: 'test1234',
+  password_confirmation: 'test1234',
+  admin: true,
+  activated: true,
+  activated_at: Time.zone.now)
+
+
 User.create!(name: 'Example User',
              email: 'example@railstutorial.org',
              password: 'foobar',
@@ -14,6 +24,8 @@ User.create!(name: 'Example User',
              admin: true,
              activated: true,
              activated_at: Time.zone.now)
+
+
 
 # Generate a bunch of additional users.
 99.times do |n|
